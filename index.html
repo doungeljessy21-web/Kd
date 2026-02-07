@@ -1,93 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sorry 💖</title>
+  <title>Sorry Game 💖</title>
   <style>
     body {
       text-align: center;
-      margin-top: 120px;
       font-family: Arial, sans-serif;
       background: #ffe6f0;
       overflow: hidden;
     }
 
     h1 {
-      font-size: 60px;
       color: #ff3366;
+      margin-top: 20px;
     }
 
-    p {
+    #score {
       font-size: 24px;
       color: #cc0052;
     }
 
-    button {
-      margin-top: 20px;
-      padding: 15px 30px;
-      font-size: 20px;
-      background-color: #ff3366;
-      color: white;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #cc0052;
-    }
-
     .heart {
-      position: fixed;
-      bottom: -20px;
-      font-size: 24px;
-      animation: floatUp 5s linear infinite;
+      position: absolute;
+      font-size: 40px;
+      cursor: pointer;
+      animation: float 6s linear infinite;
     }
 
-    @keyframes floatUp {
-      from {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-800px);
-        opacity: 0;
-      }
+    @keyframes float {
+      from { top: 100%; }
+      to { top: -50px; }
+    }
+
+    #message {
+      display: none;
+      margin-top: 40px;
+      font-size: 40px;
+      color: #ff3366;
     }
   </style>
 </head>
 
 <body>
 
-<h1>I'm sorry ❤️</h1>
-<p>Please forgive me 🥺</p>
+<h1>Catch 5 Hearts ❤️</h1>
+<p id="score">Score: 0</p>
 
-<button onclick="forgive()">Forgive me</button>
-
-<p id="msg"></p>
+<div id="message">I'm sorry 🥺❤️<br>Please forgive me 💖</div>
 
 <audio autoplay loop>
   <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-  function forgive() {
-    document.getElementById("msg").innerHTML = "Thank you ❤️ I promise I’ll do better 💖";
-  }
+  let score = 0;
 
   function createHeart() {
     const heart = document.createElement("div");
     heart.className = "heart";
     heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 30 + 20 + "px";
+    heart.style.left = Math.random() * 90 + "vw";
+
+    heart.onclick = function() {
+      score++;
+      document.getElementById("score").innerText = "Score: " + score;
+      heart.remove();
+
+      if (score === 5) {
+        document.getElementById("message").style.display = "block";
+      }
+    };
+
     document.body.appendChild(heart);
 
     setTimeout(() => {
       heart.remove();
-    }, 5000);
+    }, 6000);
   }
 
-  setInterval(createHeart, 500);
+  setInterval(createHeart, 1000);
 </script>
 
 </body>
