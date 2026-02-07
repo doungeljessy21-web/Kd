@@ -1,84 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Sorry Game 💖</title>
+  <title>Our Story 💖</title>
   <style>
     body {
-      text-align: center;
-      font-family: Arial, sans-serif;
       background: #ffe6f0;
-      overflow: hidden;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 30px;
     }
 
-    h1 {
-      color: #ff3366;
-      margin-top: 20px;
-    }
-
-    #score {
+    #story {
       font-size: 24px;
       color: #cc0052;
+      margin-top: 50px;
     }
 
-    .heart {
-      position: absolute;
-      font-size: 40px;
+    button {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #ff3366;
+      color: white;
+      border: none;
+      border-radius: 20px;
       cursor: pointer;
-      animation: float 6s linear infinite;
     }
 
-    @keyframes float {
-      from { top: 100%; }
-      to { top: -50px; }
-    }
-
-    #message {
-      display: none;
-      margin-top: 40px;
-      font-size: 40px;
-      color: #ff3366;
+    button:hover {
+      background-color: #cc0052;
     }
   </style>
 </head>
 
 <body>
 
-<h1>Catch 5 Hearts ❤️</h1>
-<p id="score">Score: 0</p>
+<h1>Our Little Story 💕</h1>
 
-<div id="message">I'm sorry 🥺❤️<br>Please forgive me 💖</div>
+<div id="story">
+  Once upon a time… there were two people who cared about each other very much ❤️
+</div>
 
-<audio autoplay loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
+<button onclick="nextStory()">Next</button>
 
 <script>
-  let score = 0;
+  let step = 0;
 
-  function createHeart() {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 90 + "vw";
+  const storyText = [
+    "Once upon a time… there were two people who cared about each other very much ❤️",
+    "They laughed together, shared secrets, and made memories 🌸",
+    "But one day… one of them made a mistake 😔",
+    "The silence hurt more than the words.",
+    "Days passed… and the heart felt heavy 💔",
+    "That person realized something very important…",
+    "Life is better with you in it.",
+    "So this little story was made just for you…",
+    "I'm sorry 🥺❤️",
+    "Will you forgive me? 💖"
+  ];
 
-    heart.onclick = function() {
-      score++;
-      document.getElementById("score").innerText = "Score: " + score;
-      heart.remove();
-
-      if (score === 5) {
-        document.getElementById("message").style.display = "block";
-      }
-    };
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-      heart.remove();
-    }, 6000);
+  function nextStory() {
+    step++;
+    if (step < storyText.length) {
+      document.getElementById("story").innerText = storyText[step];
+    }
   }
-
-  setInterval(createHeart, 1000);
 </script>
 
 </body>
