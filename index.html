@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Our Story 💖</title>
+  <title>Sorry Story 💖</title>
   <style>
     body {
-      background: #ffe6f0;
+      background: linear-gradient(#ffe6f0, #ffd6e8);
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 30px;
     }
 
+    #character {
+      font-size: 80px;
+      margin-top: 20px;
+    }
+
+    #name {
+      font-size: 28px;
+      color: #ff3366;
+      margin-bottom: 10px;
+    }
+
     #story {
       font-size: 24px;
       color: #cc0052;
-      margin-top: 50px;
+      margin-top: 30px;
+      min-height: 120px;
     }
 
     button {
-      margin-top: 30px;
+      margin: 20px;
       padding: 15px 30px;
       font-size: 18px;
       background-color: #ff3366;
       color: white;
       border: none;
-      border-radius: 20px;
+      border-radius: 25px;
       cursor: pointer;
     }
 
@@ -35,35 +47,60 @@
 
 <body>
 
-<h1>Our Little Story 💕</h1>
+<div id="character">👧</div>
+<div id="name">Luna</div>
 
 <div id="story">
-  Once upon a time… there were two people who cared about each other very much ❤️
+  Hi… I’m Luna 💕  
+  I want to tell you a little story…
 </div>
 
-<button onclick="nextStory()">Next</button>
+<div id="buttons">
+  <button onclick="nextStory()">Next</button>
+</div>
 
 <script>
   let step = 0;
 
   const storyText = [
-    "Once upon a time… there were two people who cared about each other very much ❤️",
-    "They laughed together, shared secrets, and made memories 🌸",
-    "But one day… one of them made a mistake 😔",
-    "The silence hurt more than the words.",
-    "Days passed… and the heart felt heavy 💔",
-    "That person realized something very important…",
-    "Life is better with you in it.",
-    "So this little story was made just for you…",
-    "I'm sorry 🥺❤️",
-    "Will you forgive me? 💖"
+    "Hi… I’m Luna 💕 I want to tell you a little story…",
+    "Once upon a time, Luna met someone very special ❤️",
+    "They laughed together and shared many happy days 🌸",
+    "But one day… Luna made a mistake 😔",
+    "She didn’t mean to hurt anyone, but she did…",
+    "Every night, Luna thought about that mistake 💔",
+    "She learned something important…",
+    "Love means saying sorry and trying again 🌈",
+    "So Luna made this little story just for you…",
+    "I’m sorry 🥺❤️ Will you forgive me?"
   ];
 
   function nextStory() {
     step++;
     if (step < storyText.length) {
       document.getElementById("story").innerText = storyText[step];
+
+      if (step === storyText.length - 1) {
+        document.getElementById("buttons").innerHTML = `
+          <button onclick="forgive()">Forgive Luna 💖</button>
+          <button onclick="notYet()">Not yet 😔</button>
+        `;
+      }
     }
+  }
+
+  function forgive() {
+    document.getElementById("story").innerText =
+      "Luna is so happy 😭💖 A new chapter begins with smiles and hope 🌸✨";
+    document.getElementById("buttons").innerHTML = "";
+    document.getElementById("character").innerText = "🥰";
+  }
+
+  function notYet() {
+    document.getElementById("story").innerText =
+      "Luna understands… and will wait patiently while becoming better every day 🌙💔";
+    document.getElementById("buttons").innerHTML = "";
+    document.getElementById("character").innerText = "😔";
   }
 </script>
 
